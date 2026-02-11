@@ -5,6 +5,7 @@ import { FiShoppingCart, FiUser, FiMenu, FiX, FiSearch } from 'react-icons/fi';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from './ui/Button';
+import { ThemeToggle } from './ui/ThemeToggle';
 import { useCart } from '@/lib/context/CartContext';
 
 export function Header() {
@@ -44,6 +45,9 @@ export function Header() {
 
           {/* Actions */}
           <div className="flex items-center space-x-4">
+            {/* Theme Toggle */}
+            <ThemeToggle />
+
             {/* Search Icon */}
             <button className="p-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
               <FiSearch className="w-5 h-5" />
@@ -99,6 +103,10 @@ export function Header() {
                     {link.name}
                   </Link>
                 ))}
+                <div className="px-4 py-2 flex items-center justify-between">
+                  <span className="text-gray-700 dark:text-gray-300 font-medium">Thème</span>
+                  <ThemeToggle />
+                </div>
                 <div className="px-4 pt-2">
                   <Link href="/login">
                     <Button size="sm" className="w-full gap-2">

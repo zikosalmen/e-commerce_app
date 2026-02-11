@@ -5,6 +5,7 @@ import { ProductCard } from '@/components/shop/ProductCard';
 import { FiArrowRight } from 'react-icons/fi';
 
 export default async function HomePage() {
+  // Force refresh
   // Fetch featured products
   const featuredProducts = await prisma.product.findMany({
     where: { featured: true },

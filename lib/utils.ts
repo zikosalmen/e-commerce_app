@@ -6,10 +6,11 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function formatPrice(price: number): string {
-  return new Intl.NumberFormat('fr-FR', {
+  return new Intl.NumberFormat('fr-TN', {
     style: 'currency',
-    currency: 'EUR',
-  }).format(price);
+    currency: 'TND',
+    minimumFractionDigits: 3,
+  }).format(price).replace('TND', 'DT');
 }
 
 export function formatDate(date: Date | string): string {
