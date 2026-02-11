@@ -5,9 +5,11 @@ import { FiShoppingCart, FiUser, FiMenu, FiX, FiSearch } from 'react-icons/fi';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from './ui/Button';
+import { useCart } from '@/lib/context/CartContext';
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { totalItems } = useCart();
 
   const navLinks = [
     { name: 'Accueil', href: '/' },
@@ -51,9 +53,11 @@ export function Header() {
             <Link href="/panier">
               <button className="relative p-2 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
                 <FiShoppingCart className="w-5 h-5" />
-                <span className="absolute -top-1 -right-1 bg-primary-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                  0
-                </span>
+                {totalItems > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-primary-600 text-white text-xs rounded-full min-w-[20px] h-5 flex items-center justify-center px-1">
+                    {totalItems}
+                  </span>
+                )}
               </button>
             </Link>
 

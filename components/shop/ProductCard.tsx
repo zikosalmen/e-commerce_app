@@ -10,12 +10,14 @@ import { Badge } from '../ui/Badge';
 import { Button } from '../ui/Button';
 import { Card } from '../ui/Card';
 
+import { useCart } from '@/lib/context/CartContext';
+
 interface ProductCardProps {
   product: Product;
-  onAddToCart?: (product: Product) => void;
 }
 
-export function ProductCard({ product, onAddToCart }: ProductCardProps) {
+export function ProductCard({ product }: ProductCardProps) {
+  const { addToCart } = useCart();
   const images = parseJSON<string[]>(product.images, []);
   const mainImage = images[0] || product.imageUrl || '/images/placeholder.jpg';
   const hasDiscount = product.comparePrice && product.comparePrice > product.price;
@@ -89,13 +91,13 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
             )}
           </div>
 
-          {product.stock > 0 && onAddToCart && (
+          {product.stock > 0 && (
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 size="sm"
                 onClick={(e) => {
                   e.preventDefault();
-                  onAddToCart(product);
+                  addToCart(product);
                 }}
                 className="gap-2"
               >

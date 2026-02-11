@@ -27,31 +27,31 @@ async function main() {
       name: 'Électronique',
       slug: 'electronique',
       description: 'Tout pour la maison',
-      image: '/images/categories/electronics.jpg'
+      image: 'https://images.unsplash.com/photo-1498049794561-7780e7231661?w=800'
     },
     {
       name: 'Accessoires',
       slug: 'accessoires',
       description: 'Accessoires indispensables',
-      image: '/images/categories/accessories.jpg'
+      image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=800'
     },
     {
       name: 'Tablettes',
       slug: 'tablettes',
       description: 'Tablettes tactiles',
-      image: '/images/categories/tablets.jpg'
+      image: 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=800'
     },
     {
       name: 'Audio',
       slug: 'audio',
       description: 'Casques et enceintes',
-      image: '/images/categories/audio.jpg'
+      image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800'
     },
     {
       name: 'Caméras',
       slug: 'cameras',
       description: 'Appareils photo et caméras',
-      image: '/images/categories/cameras.jpg'
+      image: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800'
     }
   ];
 
@@ -63,7 +63,7 @@ async function main() {
   for (const cat of categoriesData) {
     const category = await prisma.category.upsert({
       where: { slug: cat.slug },
-      update: {},
+      update: cat,
       create: cat,
     });
     categoryMap.set(cat.name, category.id);
@@ -80,7 +80,7 @@ async function main() {
       stock: 15,
       categoryName: 'Électronique',
       featured: true,
-      images: JSON.stringify(['/images/macbook-1.jpg', '/images/macbook-2.jpg']),
+      images: JSON.stringify(['https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800']),
     },
     {
       name: 'iPhone 15 Pro',
@@ -91,7 +91,7 @@ async function main() {
       stock: 30,
       categoryName: 'Électronique',
       featured: true,
-      images: JSON.stringify(['/images/iphone-1.jpg']),
+      images: JSON.stringify(['https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=800']),
     },
     {
       name: 'AirPods Pro',
@@ -101,7 +101,7 @@ async function main() {
       stock: 50,
       categoryName: 'Accessoires',
       featured: false,
-      images: JSON.stringify(['/images/airpods-1.jpg']),
+      images: JSON.stringify(['https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800']),
     },
     {
       name: 'Apple Watch Ultra',
@@ -112,7 +112,7 @@ async function main() {
       stock: 20,
       categoryName: 'Accessoires',
       featured: true,
-      images: JSON.stringify(['/images/watch-1.jpg', '/images/watch-2.jpg']),
+      images: JSON.stringify(['https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=800']),
     },
     {
       name: 'iPad Air',
@@ -122,7 +122,7 @@ async function main() {
       stock: 25,
       categoryName: 'Tablettes',
       featured: false,
-      images: JSON.stringify(['/images/ipad-1.jpg']),
+      images: JSON.stringify(['https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=800']),
     },
     {
       name: 'Magic Keyboard',
@@ -132,7 +132,7 @@ async function main() {
       stock: 60,
       categoryName: 'Accessoires',
       featured: false,
-      images: JSON.stringify(['/images/keyboard-1.jpg']),
+      images: JSON.stringify(['https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=800']),
     },
     {
       name: 'Sony WH-1000XM5',
@@ -143,7 +143,7 @@ async function main() {
       stock: 18,
       categoryName: 'Audio',
       featured: true,
-      images: JSON.stringify(['/images/sony-headphones-1.jpg']),
+      images: JSON.stringify(['https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800']),
     },
     {
       name: 'Samsung Galaxy S24 Ultra',
@@ -153,7 +153,7 @@ async function main() {
       stock: 22,
       categoryName: 'Électronique',
       featured: false,
-      images: JSON.stringify(['/images/samsung-1.jpg']),
+      images: JSON.stringify(['https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=800']),
     },
     {
       name: 'Dell XPS 13',
@@ -164,7 +164,7 @@ async function main() {
       stock: 12,
       categoryName: 'Électronique',
       featured: false,
-      images: JSON.stringify(['/images/dell-1.jpg']),
+      images: JSON.stringify(['https://images.unsplash.com/photo-1496181133206-80ce9b88a853?q=80&w=800']),
     },
     {
       name: 'GoPro HERO 12',
@@ -174,7 +174,7 @@ async function main() {
       stock: 28,
       categoryName: 'Caméras',
       featured: false,
-      images: JSON.stringify(['/images/gopro-1.jpg']),
+      images: JSON.stringify(['https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800']),
     },
   ];
 
@@ -190,15 +190,19 @@ async function main() {
 
     await prisma.product.upsert({
       where: { slug: product.slug },
-      update: {},
+      update: {
+        ...productData,
+        categoryId,
+      },
       create: {
         ...productData,
         categoryId,
       },
     });
+    console.log(`✅ Upserted product: ${product.name} with image ${JSON.parse(product.images)[0]}`);
   }
 
-  console.log(`✅ Created ${products.length} products`);
+  console.log(`✅ Created/Updated ${products.length} products`);
 }
 
 main()

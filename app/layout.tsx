@@ -12,6 +12,8 @@ export const metadata: Metadata = {
   description: 'Boutique e-commerce moderne avec Next.js, Tailwind et Stripe',
 };
 
+import { CartProvider } from '@/lib/context/CartContext';
+
 export default function RootLayout({
   children,
 }: {
@@ -20,7 +22,9 @@ export default function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased`}>
-        {children}
+        <CartProvider>
+          {children}
+        </CartProvider>
       </body>
     </html>
   );

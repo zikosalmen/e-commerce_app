@@ -56,3 +56,46 @@ export async function GET(request: Request) {
     );
   }
 }
+
+export async function POST(request: Request) {
+  try {
+    const session = await auth();
+    if (!session || session.user.role !== 'ADMIN') {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    const body = await request.json();
+    const { name, description, price, comparePrice, stock, imageUrl, images, categoryId, featured } = body;
+
+    const slug = name
+      .toLowerCase()
+      .trim()
+      .replace(/[^\w ]+/g, '')
+      .replace(/ +/g, '-');
+
+    const product = await prisma.product.create({
+      data: {
+        name,
+        slug,
+        description,
+        price: parseFloat(price),
+        comparePrice: comparePrice ? parseFloat(comparePrice) : null,
+        stock: parseInt(stock),
+        imageUrl,
+        images: images || '[]',
+        categoryId,
+        featured: !!featured,
+      },
+    });
+
+    return NextResponse.json(product);
+  } catch (error) {
+    console.error('Error creating product:', error);
+    return NextResponse.json(
+      { error: 'Failed to create product' },
+      { status: 500 }
+    );
+  }
+}
+
+import { auth } from '@/lib/auth';
