@@ -30,7 +30,7 @@ export default async function AdminProducts() {
           </Button>
         </Link>
       </div>
-
       <ProductTable initialProducts={products} />
+      </div>
   );
 }
