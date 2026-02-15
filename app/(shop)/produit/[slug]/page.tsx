@@ -7,14 +7,15 @@ import { FiShoppingCart, FiCheck, FiArrowLeft } from 'react-icons/fi';
 import Link from 'next/link';
 
 interface ProductPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: ProductPageProps) {
+  const { slug } = await params;
   const product = await prisma.product.findUnique({
-    where: { slug: params.slug },
+    where: { slug },
   });
 
   if (!product) {
@@ -30,8 +31,9 @@ export async function generateMetadata({ params }: ProductPageProps) {
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
+  const { slug } = await params;
   const product = await prisma.product.findUnique({
-    where: { slug: params.slug },
+    where: { slug },
     include: {
       category: true,
     },
@@ -41,8 +43,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
     notFound();
   }
 
-  const images = product.images ? JSON.parse(product.images) : [];
-  if (product.image) images.unshift(product.image); // Add legacy image if exists and not in images array? 
+  const images = product.images ? JSON.parse(product.images) : []; 
   // Actually schema has 'imageUrl' in Product (check schema), and 'images' JSON. 
   // Seed script uses 'images' JSON array. 
   // categories have 'image'.

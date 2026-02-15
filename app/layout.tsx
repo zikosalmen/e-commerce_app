@@ -15,6 +15,8 @@ export const metadata: Metadata = {
 import { ThemeProvider } from '@/components/ui/ThemeProvider';
 import { CartProvider } from '@/lib/context/CartContext';
 
+import { FloatingChatWidget } from '@/components/chat/FloatingChatWidget';
+
 export default function RootLayout({
   children,
 }: {
@@ -31,6 +33,7 @@ export default function RootLayout({
         >
           <CartProvider>
             {children}
+            <FloatingChatWidget />
           </CartProvider>
         </ThemeProvider>
       </body>

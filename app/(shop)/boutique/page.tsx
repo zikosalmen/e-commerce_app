@@ -4,11 +4,11 @@ import { Button } from '@/components/ui/Button';
 import Link from 'next/link';
 
 interface BoutiquePageProps {
-  searchParams: {
+  searchParams: Promise<{
     category?: string;
     search?: string;
     sort?: string;
-  };
+  }>;
 }
 
 export const metadata = {
@@ -17,7 +17,7 @@ export const metadata = {
 };
 
 export default async function BoutiquePage({ searchParams }: BoutiquePageProps) {
-  const { category, search, sort } = searchParams;
+  const { category, search, sort } = await searchParams;
 
   const where: any = {};
 
@@ -29,11 +29,8 @@ export default async function BoutiquePage({ searchParams }: BoutiquePageProps) 
 
   if (search) {
     where.OR = [
-      { name: { contains: search } }, // sqlite is case-insensitive by default for LIKE, but prisma simulates it?
-      // For sqlite, 'contains' maps to LIKE which is case-insensitive for ASCII but maybe not for others.
-      // Prisma 'mode: insensitive' is not supported for SQLite in older versions, but let's try or remove it.
-      // Actually, 'mode' property availability depends on provider.
-      { description: { contains: search } },
+      { name: { contains: search, mode: 'insensitive' } },
+      { description: { contains: search, mode: 'insensitive' } },
     ];
   }
 
@@ -59,7 +56,7 @@ export default async function BoutiquePage({ searchParams }: BoutiquePageProps) 
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-            {category ? `Catégorie : ${category}` : 'Toute la boutique'}
+            {category ? `Catégorie : ${category}` : `Toute la boutique`}
           </h1>
           <p className="text-gray-500 dark:text-gray-400 mt-2">
             {products.length} produit{products.length > 1 ? 's' : ''} trouvé{products.length > 1 ? 's' : ''}
