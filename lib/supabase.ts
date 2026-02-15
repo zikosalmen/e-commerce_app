@@ -1,6 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
 
-// Initialize Supabase client
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseKey = process.env.SUPABASE_SERVICE_KEY!;
 
@@ -53,7 +52,7 @@ export async function deleteProductImage(url: string): Promise<void> {
     throw new Error('Supabase is not configured');
   }
 
-  // Extract the file path from the URL
+
   const urlParts = url.split('/products/');
   if (urlParts.length !== 2) {
     throw new Error('Invalid image URL');
@@ -70,9 +69,7 @@ export async function deleteProductImage(url: string): Promise<void> {
   }
 }
 
-/**
- * Upload multiple images
- */
+
 export async function uploadMultipleImages(
   files: File[],
   productId: string
