@@ -14,15 +14,24 @@ export async function GET(req: Request) {
   const category = url.searchParams.get("category")
   const brand = url.searchParams.get("brand")
   const limit = Number(url.searchParams.get("limit") || 10)
+  const name = url.searchParams.get("name")
+  const promo = url.searchParams.get("promo")
 
-  let query = supabase.from("Product").select("id,name,price,imageUrl,categoryId,brand")
+  let query = supabase.from("Product").select("name,price,imageUrl,categoryId,brand,description,stock,promo")
+   .ilike("name", `%${name}%`)
 
   if (category) {
     query = query.eq("categoryId", category)
   }
+  if (name) {
+    query = query.eq("name", name)
+  }else{query = query.eq("name", " ")}
 
   if (brand) {
     query = query.eq("brand", brand)
+  }
+  if (promo) {
+    query = query.eq("promo", promo)
   }
 
   const { data, error } = await query.range(0, limit - 1)
