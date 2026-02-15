@@ -19,3 +19,8 @@ declare module 'next-auth/jwt' {
     role: 'USER' | 'ADMIN';
   }
 }
+declare module '@auth/core/adapters' {
+  interface AdapterUser {
+    role: 'USER' | 'ADMIN';
+  }
+}
