@@ -4,6 +4,8 @@ import { Button } from '@/components/ui/Button';
 import { ProductCard } from '@/components/shop/ProductCard';
 import { FiArrowRight } from 'react-icons/fi';
 
+export const dynamic = 'force-dynamic';
+
 export default async function HomePage() {
   // Force refresh
   // Fetch featured products

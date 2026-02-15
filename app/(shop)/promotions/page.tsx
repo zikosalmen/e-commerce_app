@@ -7,6 +7,8 @@ export const metadata = {
   description: 'Profitez de nos meilleures offres',
 };
 
+export const dynamic = 'force-dynamic';
+
 export default async function PromotionsPage() {
   const products = await prisma.product.findMany({
     where: {
