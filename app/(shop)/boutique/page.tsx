@@ -11,6 +11,8 @@ interface BoutiquePageProps {
   }>;
 }
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   title: 'Boutique | E-Shop',
   description: 'Découvrez tous nos produits',

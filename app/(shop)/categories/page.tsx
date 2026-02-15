@@ -4,6 +4,8 @@ import Image from 'next/image';
 import { Card } from '@/components/ui/Card';
 import { getImageUrl } from '@/lib/utils';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   title: 'Nos Catégories | E-Shop',
   description: 'Découvrez toutes nos catégories de produits',
