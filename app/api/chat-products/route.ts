@@ -15,10 +15,10 @@ export async function GET(req: Request) {
   const brand = url.searchParams.get("brand")
   const limit = Number(url.searchParams.get("limit") || 10)
 
-  let query = supabase.from("Product").select("id,name,price,imageUrl,category,brand")
+  let query = supabase.from("Product").select("id,name,price,imageUrl,categoryId,brand")
 
   if (category) {
-    query = query.eq("category", category)
+    query = query.eq("categoryId", category)
   }
 
   if (brand) {
