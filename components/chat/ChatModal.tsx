@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { cn } from '@/front/lib/utils';
 import { ChatWindow } from './ChatWindow';
 
 interface ChatModalProps {

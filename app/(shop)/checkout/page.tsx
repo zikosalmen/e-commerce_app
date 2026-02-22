@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { useCart } from '@/lib/context/CartContext';
-import { formatPrice, getImageUrl } from '@/lib/utils';
+import { useCart } from '@/front/lib/context/CartContext';
+import { formatPrice, getImageUrl } from '@/front/lib/utils';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Input } from '@/components/ui/Input';

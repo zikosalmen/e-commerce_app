@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/front/lib/prisma';
 import { ProductForm } from '@/components/admin/ProductForm';
 import { notFound } from 'next/navigation';
 

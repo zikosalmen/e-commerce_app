@@ -1,4 +1,4 @@
-import { supabase } from "@/lib/supabase"
+import { supabase } from "@/front/lib/supabase"
 
 export async function GET(req: Request) {
   const token = req.headers.get("auth")

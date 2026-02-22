@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/front/lib/prisma';
 import { Card } from '@/components/ui/Card';
 import { FiUser, FiShield, FiMail, FiCalendar } from 'react-icons/fi';
 

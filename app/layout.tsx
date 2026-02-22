@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 import { ThemeProvider } from '@/components/ui/ThemeProvider';
-import { CartProvider } from '@/lib/context/CartContext';
+import { CartProvider } from '@/front/lib/context/CartContext';
 import { AuthProvider } from '@/components/AuthProvider';
 
 import { FloatingChatWidget } from '@/components/chat/FloatingChatWidget';

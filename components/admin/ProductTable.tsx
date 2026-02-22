@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
-import { formatPrice, getImageUrl } from '@/lib/utils';
+import { formatPrice, getImageUrl } from '@/front/lib/utils';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FiEdit2, FiTrash2, FiSearch } from 'react-icons/fi';

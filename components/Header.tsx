@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from './ui/Button';
 import { ThemeToggle } from './ui/ThemeToggle';
-import { useCart } from '@/lib/context/CartContext';
+import { useCart } from '@/front/lib/context/CartContext';
 import { useSession } from 'next-auth/react';
 
 export function Header() {

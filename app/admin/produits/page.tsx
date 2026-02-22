@@ -1,7 +1,7 @@
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/front/lib/prisma';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
-import { formatPrice, getImageUrl } from '@/lib/utils';
+import { formatPrice, getImageUrl } from '@/front/lib/utils';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FiPlus, FiEdit2, FiTrash2, FiSearch } from 'react-icons/fi';

@@ -1,7 +1,7 @@
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/front/lib/prisma';
 import { Card } from '@/components/ui/Card';
 import { FiBox, FiShoppingBag, FiUsers, FiTrendingUp } from 'react-icons/fi';
-import { formatPrice } from '@/lib/utils';
+import { formatPrice } from '@/front/lib/utils';
 
 export default async function AdminDashboard() {
   const [productCount, orderCount, userCount, totalRevenue] = await Promise.all([

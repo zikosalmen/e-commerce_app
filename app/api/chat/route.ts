@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { checkRateLimit } from '@/lib/rate-limiter';
+import { checkRateLimit } from '@/front/lib/rate-limiter';
 
 export async function POST(request: NextRequest) {
   try {

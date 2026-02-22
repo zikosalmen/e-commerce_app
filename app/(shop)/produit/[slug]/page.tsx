@@ -1,8 +1,8 @@
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/front/lib/prisma';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { Button } from '@/components/ui/Button';
-import { getImageUrl, formatPrice } from '@/lib/utils';
+import { getImageUrl, formatPrice } from '@/front/lib/utils';
 import { FiShoppingCart, FiCheck, FiArrowLeft } from 'react-icons/fi';
 import Link from 'next/link';
 

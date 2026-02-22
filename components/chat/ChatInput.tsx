@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useRef, KeyboardEvent } from 'react';
-import { cn } from '@/lib/utils';
+import { cn } from '@/front/lib/utils';
 import { Send } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 

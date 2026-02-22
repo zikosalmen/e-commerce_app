@@ -1,8 +1,8 @@
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/front/lib/prisma';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Card } from '@/components/ui/Card';
-import { getImageUrl } from '@/lib/utils';
+import { getImageUrl } from '@/front/lib/utils';
 
 export const dynamic = 'force-dynamic';
 

@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/front/lib/prisma';
 import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
 import { ProductCard } from '@/components/shop/ProductCard';

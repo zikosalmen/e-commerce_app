@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { MessageCircle, X } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { cn } from '@/front/lib/utils';
 import { ChatModal } from './ChatModal';
 
 interface FloatingChatWidgetProps {

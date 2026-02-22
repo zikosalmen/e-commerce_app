@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/front/lib/prisma';
 import { NextResponse } from 'next/server';
 
 export async function GET(request: Request) {
@@ -98,4 +98,4 @@ export async function POST(request: Request) {
   }
 }
 
-import { auth } from '@/lib/auth';
+import { auth } from '@/front/lib/auth';

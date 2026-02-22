@@ -1,4 +1,4 @@
-import { auth } from '@/lib/auth';
+import { auth } from '@/front/lib/auth';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import { FiHome, FiBox, FiShoppingBag, FiUsers, FiSettings, FiLogOut } from 'react-icons/fi';

@@ -1,7 +1,7 @@
 'use client';
 
-import { formatPrice, getImageUrl, parseJSON } from '@/lib/utils';
-import type { Product } from '@/types';
+import { formatPrice, getImageUrl, parseJSON } from '@/front/lib/utils';
+import type { Product } from '@/front/types';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -10,7 +10,7 @@ import { Badge } from '../ui/Badge';
 import { Button } from '../ui/Button';
 import { Card } from '../ui/Card';
 
-import { useCart } from '@/lib/context/CartContext';
+import { useCart } from '@/front/lib/context/CartContext';
 
 interface ProductCardProps {
   product: Product;

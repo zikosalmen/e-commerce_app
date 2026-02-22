@@ -2,7 +2,7 @@
 
 import { useSession } from 'next-auth/react';
 import { useState, useEffect } from 'react';
-import { formatPrice } from '@/lib/utils';
+import { formatPrice } from '@/front/lib/utils';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import Link from 'next/link';

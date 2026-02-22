@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/front/lib/prisma';
 import { ProductCard } from '@/components/shop/ProductCard';
 import { FiPercent } from 'react-icons/fi';
 

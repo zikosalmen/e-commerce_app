@@ -1,6 +1,6 @@
 'use client';
 
-import { cn } from '@/lib/utils';
+import { cn } from '@/front/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
 import React, { useEffect } from 'react';
 import { FiX } from 'react-icons/fi';

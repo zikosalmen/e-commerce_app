@@ -4,8 +4,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { MessageBubble, type Message } from './MessageBubble';
 import { ChatInput } from './ChatInput';
 import { TypingIndicator } from './TypingIndicator';
-import { cn } from '@/lib/utils';
-import { parseJSON } from '@/lib/utils';
+import { cn } from '@/front/lib/utils';
+import { parseJSON } from '@/front/lib/utils';
 
 const STORAGE_KEY = 'chat-messages';
 
