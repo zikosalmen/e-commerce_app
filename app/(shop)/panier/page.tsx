@@ -156,9 +156,11 @@ export default function CartPage() {
               </div>
             </div>
 
-            <Button size="lg" className="w-full py-6 text-lg font-bold">
-              Passer à la caisse
-            </Button>
+            <Link href="/checkout">
+              <Button size="lg" className="w-full py-6 text-lg font-bold">
+                Passer à la caisse
+              </Button>
+            </Link>
 
             <div className="mt-6 space-y-4">
               <div className="flex items-center gap-3 text-sm text-gray-500 dark:text-gray-400">

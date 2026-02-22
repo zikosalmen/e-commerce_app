@@ -14,6 +14,7 @@ export const metadata: Metadata = {
 
 import { ThemeProvider } from '@/components/ui/ThemeProvider';
 import { CartProvider } from '@/lib/context/CartContext';
+import { AuthProvider } from '@/components/AuthProvider';
 
 import { FloatingChatWidget } from '@/components/chat/FloatingChatWidget';
 
@@ -25,17 +26,19 @@ export default function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <CartProvider>
-            {children}
-            <FloatingChatWidget />
-          </CartProvider>
-        </ThemeProvider>
+        <AuthProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <CartProvider>
+              {children}
+              <FloatingChatWidget />
+            </CartProvider>
+          </ThemeProvider>
+        </AuthProvider>
       </body>
     </html>
   );

@@ -2,7 +2,7 @@ import { prisma } from '@/lib/prisma';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { Button } from '@/components/ui/Button';
-import { getImageUrl } from '@/lib/utils';
+import { getImageUrl, formatPrice } from '@/lib/utils';
 import { FiShoppingCart, FiCheck, FiArrowLeft } from 'react-icons/fi';
 import Link from 'next/link';
 
@@ -106,11 +106,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
           <div className="flex items-baseline gap-4 mb-6">
             <span className="text-3xl font-bold text-gray-900 dark:text-white">
-              {product.price.toFixed(2)} €
+              {formatPrice(product.price)}
             </span>
             {product.comparePrice && (
               <span className="text-xl text-gray-500 line-through">
-                {product.comparePrice.toFixed(2)} €
+                {formatPrice(product.comparePrice)}
               </span>
             )}
           </div>

@@ -72,9 +72,9 @@ export function ProductCard({ product }: ProductCardProps) {
           {product.description}
         </p>
 
-        <div className="mt-4 flex items-center justify-between">
+        <div className="mt-2 flex items-center justify-between">
           <div>
-            <div className="flex items-baseline gap-2">
+            <div className="flex flex-col items-center gap-1">
               <span className="text-2xl font-bold text-gray-900 dark:text-white">
                 {formatPrice(product.price)}
               </span>

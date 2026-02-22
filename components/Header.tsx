@@ -7,15 +7,18 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from './ui/Button';
 import { ThemeToggle } from './ui/ThemeToggle';
 import { useCart } from '@/lib/context/CartContext';
+import { useSession } from 'next-auth/react';
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { totalItems } = useCart();
+  const { data: session, status } = useSession();
 
   const navLinks = [
     { name: 'Accueil', href: '/' },
     { name: 'Boutique', href: '/boutique' },
     { name: 'Catégories', href: '/categories' },
+    { name: 'Promotions', href: '/promotions' },
   ];
 
   return (
@@ -66,12 +69,27 @@ export function Header() {
             </Link>
 
             {/* User/Login */}
-            <Link href="/login">
-              <Button size="sm" className="hidden sm:inline-flex gap-2">
-                <FiUser className="w-4 h-4" />
-                Connexion
-              </Button>
-            </Link>
+            {status === 'loading' ? (
+              <div className="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 animate-pulse hidden sm:block" />
+            ) : session ? (
+              <Link href="/profil">
+                <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors cursor-pointer">
+                  <div className="w-7 h-7 rounded-full bg-gradient-to-br from-primary-400 to-secondary-400 flex items-center justify-center text-white text-xs font-bold">
+                    {session.user?.name?.[0]?.toUpperCase() || session.user?.email?.[0]?.toUpperCase() || '?'}
+                  </div>
+                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300 max-w-[100px] truncate">
+                    {session.user?.name || 'Profil'}
+                  </span>
+                </div>
+              </Link>
+            ) : (
+              <Link href="/login">
+                <Button size="sm" className="hidden sm:inline-flex gap-2">
+                  <FiUser className="w-4 h-4" />
+                  Connexion
+                </Button>
+              </Link>
+            )}
 
             {/* Mobile Menu Toggle */}
             <button
@@ -108,12 +126,21 @@ export function Header() {
                   <ThemeToggle />
                 </div>
                 <div className="px-4 pt-2">
-                  <Link href="/login">
-                    <Button size="sm" className="w-full gap-2">
-                      <FiUser className="w-4 h-4" />
-                      Connexion
-                    </Button>
-                  </Link>
+                  {session ? (
+                    <Link href="/profil" onClick={() => setMobileMenuOpen(false)}>
+                      <Button size="sm" className="w-full gap-2">
+                        <FiUser className="w-4 h-4" />
+                        Mon Profil
+                      </Button>
+                    </Link>
+                  ) : (
+                    <Link href="/login" onClick={() => setMobileMenuOpen(false)}>
+                      <Button size="sm" className="w-full gap-2">
+                        <FiUser className="w-4 h-4" />
+                        Connexion
+                      </Button>
+                    </Link>
+                  )}
                 </div>
               </nav>
             </motion.div>
