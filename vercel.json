@@ -1,0 +1,12 @@
+{
+  "projects": [
+    {
+      "name": "admin-dashboard",
+      "rootDirectory": "admin-dashboard"
+    },
+    {
+      "name": "front",
+      "rootDirectory": "front"
+    }
+  ]
+}
