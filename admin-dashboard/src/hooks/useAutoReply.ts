@@ -17,7 +17,7 @@ export function useAutoReplySettings() {
   return useQuery({
     queryKey: ['auto-reply-settings'],
     queryFn: async (): Promise<AutoReplySettings | null> => {
-      const res = await fetch(`${API_BASE}/api/auto-reply/settings`);
+      const res = await fetch(`${API_BASE}`);
       if (!res.ok) throw new Error('Failed to fetch settings');
       const json = await res.json();
       return json.settings ?? null;
@@ -30,7 +30,7 @@ export function useSaveAutoReplySettings() {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (settings: AutoReplySettings) => {
-      const res = await fetch(`${API_BASE}/api/auto-reply/settings`, {
+      const res = await fetch(`${API_BASE}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(settings),

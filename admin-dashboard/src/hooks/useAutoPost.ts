@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+const API_BASE = import.meta.env.VITE_API_AUTO_POST_URL || 'http://localhost:3000';
 
 // ---- Types ----
 export interface AutoPostSettings {
@@ -82,7 +82,7 @@ export function useAutoPostLogs() {
       return json.logs ?? [];
     },
     staleTime: 10_000,
-    refetchInterval: 30_000, // auto-refresh every 30s
+    refetchInterval: 30_000, 
   });
 }
 
