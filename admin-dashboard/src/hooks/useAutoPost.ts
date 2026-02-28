@@ -85,7 +85,7 @@ export function useAutoPostLogs() {
 export function useUpdateLogStatus() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async ({ admin_ame, status }: { admin_ame: string; status: string }) => {
+    mutationFn: async ({ id, status }: { id: string | number; status: string }) => {
       const res = await fetch(`${API_BASE}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
