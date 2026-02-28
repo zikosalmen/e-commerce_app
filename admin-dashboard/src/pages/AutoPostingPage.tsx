@@ -31,8 +31,6 @@ const DEFAULT_SETTINGS: AutoPostSettings = {
   interval_hours: 24,
   posts_per_day: null,
   scheduled_times: [],
-  start_date: new Date().toISOString().split('T')[0],
-  end_date: null,
   require_email_confirmation: false,
   global_text: '',
 };
@@ -102,7 +100,14 @@ export default function AutoPostingPage() {
   const [showPreview, setShowPreview] = useState(false);
 
   useEffect(() => {
-    if (existing) setForm({ ...DEFAULT_SETTINGS, ...existing });
+    if (existing) {
+      setForm({ 
+        ...DEFAULT_SETTINGS, 
+        ...existing,
+        frequency_type: 'interval',
+        posts_per_day: null
+      });
+    }
   }, [existing]);
 
   const set = <K extends keyof AutoPostSettings>(key: K, value: AutoPostSettings[K]) => {
@@ -235,68 +240,19 @@ export default function AutoPostingPage() {
 
       {/* 3. Scheduling */}
       <Section title={t('autoPosting.scheduling.title')} icon={Clock}>
-        <Row label={t('autoPosting.scheduling.freqModel')}>
-          <div className="grid grid-cols-2 gap-3">
-            {[
-              { id: 'interval', label: t('autoPosting.scheduling.interval'), icon: Clock },
-              { id: 'daily_count', label: t('autoPosting.scheduling.dailyCount'), icon: Calendar }
-            ].map(type => (
-              <button
-                key={type.id}
-                onClick={() => set('frequency_type', type.id as any)}
-                className={`flex items-center justify-center gap-2 p-4 rounded-xl border-2 transition-all font-bold text-sm cursor-pointer ${form.frequency_type === type.id ? 'border-indigo-600 bg-indigo-50/50 text-indigo-600 dark:bg-indigo-500/10' : 'border-slate-100 dark:border-slate-800 text-slate-400'}`}
-              >
-                <type.icon size={18} />
-                {type.label}
-              </button>
-            ))}
+        <Row label={t('autoPosting.scheduling.intervalDelay')} hint={t('autoPosting.scheduling.intervalHint')}>
+          <div className="relative group">
+            <input
+              type="number" 
+              value={form.interval_hours ?? 24}
+              onChange={v => set('interval_hours', parseInt(v.target.value) || null)}
+              className="w-full pl-4 pr-16 py-3 rounded-xl border border-[var(--border-color)] bg-slate-50 dark:bg-slate-800/50 text-sm font-bold outline-none"
+            />
+            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-black uppercase text-slate-400 group-focus-within:text-indigo-500">{t('autoPosting.scheduling.hours')}</span>
           </div>
         </Row>
 
-        {form.frequency_type === 'interval' ? (
-          <Row label={t('autoPosting.scheduling.intervalDelay')} hint={t('autoPosting.scheduling.intervalHint')}>
-            <div className="relative group">
-              <input
-                type="number" 
-                value={form.interval_hours ?? 24}
-                onChange={v => set('interval_hours', parseInt(v.target.value) || null)}
-                className="w-full pl-4 pr-16 py-3 rounded-xl border border-[var(--border-color)] bg-slate-50 dark:bg-slate-800/50 text-sm font-bold outline-none"
-              />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-black uppercase text-slate-400 group-focus-within:text-indigo-500">{t('autoPosting.scheduling.hours')}</span>
-            </div>
-          </Row>
-        ) : (
-          <Row label={t('autoPosting.scheduling.dailyCountLabel')} hint={t('autoPosting.scheduling.dailyCountHint')}>
-            <div className="relative group">
-              <input
-                type="number" 
-                value={form.posts_per_day ?? 1}
-                onChange={v => set('posts_per_day', parseInt(v.target.value) || null)}
-                className="w-full pl-4 pr-16 py-3 rounded-xl border border-[var(--border-color)] bg-slate-50 dark:bg-slate-800/50 text-sm font-bold outline-none"
-              />
-              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-black uppercase text-slate-400 group-focus-within:text-indigo-500">{t('autoPosting.scheduling.posts')}</span>
-            </div>
-          </Row>
-        )}
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Row label={t('autoPosting.scheduling.start')}>
-            <input 
-              type="date" 
-              value={form.start_date} 
-              onChange={v => set('start_date', v.target.value)} 
-              className="w-full px-4 py-3 rounded-xl border border-[var(--border-color)] bg-slate-50 dark:bg-slate-800/50 text-sm font-bold outline-none shadow-sm"
-            />
-          </Row>
-          <Row label={t('autoPosting.scheduling.end')}>
-            <input 
-              type="date" 
-              value={form.end_date ?? ''} 
-              onChange={v => set('end_date', v.target.value || null)} 
-              className="w-full px-4 py-3 rounded-xl border border-[var(--border-color)] bg-slate-50 dark:bg-slate-800/50 text-sm font-bold outline-none shadow-sm"
-            />
-          </Row>
-        </div>
+        
       </Section>
 
       {/* 4. Confirmation & Text */}

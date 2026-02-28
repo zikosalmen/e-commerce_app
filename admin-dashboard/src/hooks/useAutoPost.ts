@@ -1,11 +1,11 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 
-const API_BASE = import.meta.env.VITE_API_AUTO_POST_URL || 'http://localhost:3000';
+const API_BASE = import.meta.env.VITE_API_AUTO_post_URL ;
 
 // ---- Types ----
 export interface AutoPostSettings {
-  id?: string;
+  admin_ame?: string;
   is_active: boolean;
   source_type: 'product' | 'category' | 'random';
   product_id?: string | null;
@@ -15,14 +15,12 @@ export interface AutoPostSettings {
   interval_hours?: number | null;
   posts_per_day?: number | null;
   scheduled_times: string[];
-  start_date: string;
-  end_date?: string | null;
   require_email_confirmation: boolean;
   global_text: string;
 }
 
 export interface AutoPostLog {
-  id: string;
+  admin_ame: string;
   product_id: string | null;
   product_name: string | null;
   product_price: number | null;
@@ -34,13 +32,11 @@ export interface AutoPostLog {
   webhook_payload: Record<string, unknown> | null;
 }
 
-// ---- Hooks ----
-
 export function useAutoPostSettings() {
   return useQuery({
     queryKey: ['auto-post-settings'],
     queryFn: async (): Promise<AutoPostSettings | null> => {
-      const res = await fetch(`${API_BASE}/api/auto-post/settings`);
+      const res = await fetch(`${API_BASE}`);
       if (!res.ok) throw new Error('Failed to fetch settings');
       const json = await res.json();
       return json.settings ?? null;
@@ -53,7 +49,7 @@ export function useSaveAutoPostSettings() {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (settings: AutoPostSettings) => {
-      const res = await fetch(`${API_BASE}/api/auto-post/settings`, {
+      const res = await fetch(`${API_BASE}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(settings),
@@ -76,7 +72,7 @@ export function useAutoPostLogs() {
   return useQuery({
     queryKey: ['auto-post-logs'],
     queryFn: async (): Promise<AutoPostLog[]> => {
-      const res = await fetch(`${API_BASE}/api/auto-post/logs`);
+      const res = await fetch(`${API_BASE}`);
       if (!res.ok) throw new Error('Failed to fetch logs');
       const json = await res.json();
       return json.logs ?? [];
@@ -89,8 +85,8 @@ export function useAutoPostLogs() {
 export function useUpdateLogStatus() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async ({ id, status }: { id: string; status: string }) => {
-      const res = await fetch(`${API_BASE}/api/auto-post/logs/${id}`, {
+    mutationFn: async ({ admin_ame, status }: { admin_ame: string; status: string }) => {
+      const res = await fetch(`${API_BASE}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status }),
