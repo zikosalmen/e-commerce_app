@@ -18,7 +18,10 @@ import {
   Mail, 
   AlignLeft,
   ChevronRight,
-  Database
+  Database,
+  Facebook,
+  Instagram,
+  Share2
 } from 'lucide-react';
 
 const DEFAULT_SETTINGS: AutoPostSettings = {
@@ -33,6 +36,8 @@ const DEFAULT_SETTINGS: AutoPostSettings = {
   scheduled_times: [],
   require_email_confirmation: false,
   global_text: '',
+  post_to_facebook: true,
+  post_to_instagram: true,
 };
 
 function Section({ title, icon: Icon, children }: { title: string; icon: any; children: React.ReactNode }) {
@@ -235,6 +240,23 @@ export default function AutoPostingPage() {
 
         <Row label={t('autoPosting.content.promoOnly')} hint={t('autoPosting.content.promoOnlyHint')}>
           <CustomToggle checked={form.only_promo} onChange={v => set('only_promo', v)} />
+        </Row>
+      </Section>
+
+      {/* Target Platforms */}
+      <Section title={t('autoPosting.targets.title', { defaultValue: 'Plateformes Cibles' })} icon={Share2}>
+        <Row label={t('autoPosting.targets.facebook', { defaultValue: 'Facebook' })} hint={t('autoPosting.targets.facebookHint', { defaultValue: 'Publier sur les pages et groupes Facebook connectés' })}>
+          <div className="flex items-center gap-4">
+            <Facebook className={`w-5 h-5 ${form.post_to_facebook ? 'text-blue-600' : 'text-slate-400'}`} />
+            <CustomToggle checked={form.post_to_facebook ?? true} onChange={v => set('post_to_facebook', v)} />
+          </div>
+        </Row>
+
+        <Row label={t('autoPosting.targets.instagram', { defaultValue: 'Instagram' })} hint={t('autoPosting.targets.instagramHint', { defaultValue: 'Publier sur votre compte Instagram principal' })}>
+          <div className="flex items-center gap-4">
+            <Instagram className={`w-5 h-5 ${form.post_to_instagram ? 'text-pink-600' : 'text-slate-400'}`} />
+            <CustomToggle checked={form.post_to_instagram ?? true} onChange={v => set('post_to_instagram', v)} />
+          </div>
         </Row>
       </Section>
 

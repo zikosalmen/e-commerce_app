@@ -17,6 +17,8 @@ export interface AutoPostSettings {
   scheduled_times: string[];
   require_email_confirmation: boolean;
   global_text: string;
+  post_to_facebook: boolean;
+  post_to_instagram: boolean;
 }
 
 export interface AutoPostLog {

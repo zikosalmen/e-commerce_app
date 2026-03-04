@@ -210,6 +210,13 @@
       "promoOnly": "Promotions Uniquement",
       "promoOnlyHint": "Focus prioritaire sur l'inventaire en promotion"
     },
+    "targets": {
+      "title": "Plateformes Cibles",
+      "facebook": "Facebook",
+      "facebookHint": "Publier sur les pages et groupes Facebook connectés",
+      "instagram": "Instagram",
+      "instagramHint": "Publier sur votre compte Instagram principal"
+    },
     "scheduling": {
       "title": "Moteur Temporel",
       "freqModel": "Modèle de Fréquence",
