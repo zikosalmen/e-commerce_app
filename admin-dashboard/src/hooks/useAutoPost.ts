@@ -21,6 +21,7 @@ export interface AutoPostSettings {
   post_to_instagram: boolean;
 }
 
+
 export interface AutoPostLog {
   admin_ame: string;
   product_id: string | null;
