@@ -27,10 +27,16 @@ export default async function AdminLayout({
       {/* Sidebar */}
       <aside className="w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 hidden md:flex flex-col sticky top-0 h-screen">
         <div className="p-6 border-b border-gray-200 dark:border-gray-800">
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-primary-600 to-secondary-600 rounded-lg" />
-            <span className="font-bold text-xl text-gray-900 dark:text-white">
-              E-Shop Admin
+          <Link href="/" className="flex items-center space-x-3 group">
+            <div className="w-12 h-12 relative bg-white rounded-full p-1.5 shadow-sm border border-gray-100 dark:border-gray-800 transition-transform group-hover:scale-105">
+              <img 
+                src="/logo.png" 
+                alt="First Shop Logo" 
+                className="w-full h-full object-contain p-1"
+              />
+            </div>
+            <span className="font-bold text-xl text-gray-900 dark:text-white tracking-tight">
+              First Shop Admin
             </span>
           </Link>
         </div>
@@ -63,8 +69,14 @@ export default async function AdminLayout({
       <main className="flex-1 overflow-auto">
         {/* Top Header for Mobile */}
         <header className="md:hidden bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 p-4 sticky top-0 z-10 flex items-center justify-between">
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-primary-600 to-secondary-600 rounded-lg" />
+          <Link href="/" className="flex items-center space-x-2 group">
+            <div className="w-10 h-10 relative bg-white rounded-full p-1 shadow-sm border border-gray-100 dark:border-gray-800 transition-transform group-hover:scale-105">
+              <img 
+                src="/logo.png" 
+                alt="First Shop Logo" 
+                className="w-full h-full object-contain p-0.5"
+              />
+            </div>
             <span className="font-bold text-lg text-gray-900 dark:text-white">Admin</span>
           </Link>
           {/* Mobile menu toggle could be added here */}

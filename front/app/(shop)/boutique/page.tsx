@@ -14,8 +14,8 @@ interface BoutiquePageProps {
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
-  title: 'Boutique | E-Shop',
-  description: 'Découvrez tous nos produits',
+  title: 'Boutique | First Shop',
+  description: 'Découvrez tous nos produits tech et lifestyle',
 };
 
 export default async function BoutiquePage({ searchParams }: BoutiquePageProps) {

@@ -27,7 +27,11 @@ export function Header() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3 group">
+          <Link 
+            href="/" 
+            className="flex items-center space-x-3 group"
+            suppressHydrationWarning={true}
+          >
             <div className="w-12 h-12 relative bg-white rounded-full p-1.5 shadow-sm border border-gray-100 dark:border-gray-800 transition-transform group-hover:scale-105">
               <Image 
                 src="/logo.png" 

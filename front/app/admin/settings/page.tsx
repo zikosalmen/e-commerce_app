@@ -11,10 +11,10 @@ export default function AdminSettingsPage() {
   const [saved, setSaved] = useState(false);
 
   const [settings, setSettings] = useState({
-    siteName: 'E-Shop',
-    siteDescription: 'Boutique e-commerce moderne',
+    siteName: 'First Shop',
+    siteDescription: 'Votre boutique e-commerce de confiance',
     currency: 'TND',
-    contactEmail: 'contact@eshop.tn',
+    contactEmail: 'contact@firstshop.tn',
     freeShippingThreshold: '50',
     enableNotifications: true,
     enableNewsletter: true,

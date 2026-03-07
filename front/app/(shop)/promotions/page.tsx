@@ -3,8 +3,8 @@ import { ProductCard } from '@/components/shop/ProductCard';
 import { FiPercent } from 'react-icons/fi';
 
 export const metadata = {
-  title: 'Promotions | E-Shop',
-  description: 'Profitez de nos meilleures offres',
+  title: 'Promotions | First Shop',
+  description: 'Profitez de nos meilleures offres sur First Shop',
 };
 
 export const dynamic = 'force-dynamic';
@@ -15,10 +15,6 @@ export default async function PromotionsPage() {
       comparePrice: {
         not: null,
       },
-      // Ensure we only get products where price is actually lower than comparePrice
-      // Prisma doesn't support field comparison in where clause directly easily in all DBs, 
-      // but typically comparePrice exists means it's a promo.
-      // We can filter in JS if needed, but let's assume existence implies promo.
     },
     orderBy: {
       updatedAt: 'desc',

@@ -7,8 +7,8 @@ import { getImageUrl } from '@/lib/utils';
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
-  title: 'Nos Catégories | E-Shop',
-  description: 'Découvrez toutes nos catégories de produits',
+  title: 'Nos Catégories | First Shop',
+  description: 'Découvrez toutes nos catégories de produits First Shop',
 };
 
 export default async function CategoriesPage() {

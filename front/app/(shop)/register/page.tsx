@@ -63,10 +63,16 @@ export default function RegisterPage() {
         className="w-full max-w-md"
       >
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center space-x-2 mb-6">
-            <div className="w-10 h-10 bg-gradient-to-br from-primary-600 to-secondary-600 rounded-xl" />
-            <span className="font-bold text-2xl text-gray-900 dark:text-white">
-              E-Shop
+          <Link href="/" className="inline-flex items-center space-x-3 mb-6 group">
+            <div className="w-12 h-12 relative bg-white rounded-full p-1.5 shadow-sm border border-gray-100 dark:border-gray-800 transition-transform group-hover:scale-105">
+              <img 
+                src="/logo.png" 
+                alt="First Shop Logo" 
+                className="w-full h-full object-contain p-1"
+              />
+            </div>
+            <span className="font-bold text-2xl text-gray-900 dark:text-white tracking-tight">
+              First Shop
             </span>
           </Link>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
