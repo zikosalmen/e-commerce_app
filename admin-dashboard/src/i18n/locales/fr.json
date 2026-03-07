@@ -270,7 +270,7 @@
     }
   },
   "auth": {
-    "title": "Tableau de Bord Admin",
+    "title": "First Shop Admin",
     "subtitle": "Connectez-vous pour gérer votre boutique",
     "emailLabel": "Adresse Email",
     "passwordLabel": "Mot de passe",

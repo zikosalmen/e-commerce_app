@@ -263,7 +263,7 @@
     }
   },
   "auth": {
-    "title": "Admin Dashboard",
+    "title": "First Shop Admin",
     "subtitle": "Sign in to manage your store",
     "emailLabel": "Email address",
     "passwordLabel": "Password",
