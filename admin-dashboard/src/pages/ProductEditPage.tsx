@@ -87,9 +87,9 @@ export default function ProductEditPage() {
       } else {
         const ext = file.name.split('.').pop();
         const fname = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
-        const { error } = await supabase.storage.from('products').upload(`products/${fname}`, file);
+        const { error } = await supabase.storage.from('ecommerce1').upload(`products/${fname}`, file);
         if (error) throw error;
-        const { data: urlData } = supabase.storage.from('products').getPublicUrl(`products/${fname}`);
+        const { data: urlData } = supabase.storage.from('ecommerce1').getPublicUrl(`products/${fname}`);
         publicUrl = urlData.publicUrl;
         setCacheEntry(hash, publicUrl);
         toast.success(t('common.success'));
