@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { FiShoppingCart, FiUser, FiMenu, FiX, FiSearch } from 'react-icons/fi';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -27,9 +28,16 @@ export function Header() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-primary-600 to-secondary-600 rounded-lg" />
+            <div className="w-8 h-8 relative">
+              <Image 
+                src="/logo.png" 
+                alt="First Shop Logo" 
+                fill
+                className="object-contain"
+              />
+            </div>
             <span className="font-bold text-xl text-gray-900 dark:text-white">
-              E-Shop
+              First Shop
             </span>
           </Link>
 

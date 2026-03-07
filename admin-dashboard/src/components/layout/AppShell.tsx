@@ -50,7 +50,7 @@ export function AppShell() {
 
         <footer className="py-6 px-8 border-t border-[var(--border-color)] text-center">
           <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest">
-            &copy; {new Date().getFullYear()} AdminPro Dashboard &bull; Premium E-commerce Management
+            &copy; {new Date().getFullYear()} First Shop Admin &bull; Premium E-commerce Management
           </p>
         </footer>
       </div>

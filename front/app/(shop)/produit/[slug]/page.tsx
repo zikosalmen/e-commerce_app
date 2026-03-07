@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: ProductPageProps) {
   }
 
   return {
-    title: `${product.name} | E-Shop`,
+    title: `${product.name} | First Shop`,
     description: product.description,
   };
 }

@@ -8,8 +8,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'E-Commerce Moderne',
-  description: 'Boutique e-commerce moderne avec Next.js, Tailwind et Stripe',
+  title: 'First Shop',
+  description: 'Votre boutique e-commerce de confiance - First Shop',
 };
 
 import { ThemeProvider } from '@/components/ui/ThemeProvider';

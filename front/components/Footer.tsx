@@ -8,7 +8,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* About */}
           <div>
-            <h3 className="text-white font-bold text-lg mb-4">E-Shop</h3>
+            <h3 className="text-white font-bold text-lg mb-4">First Shop</h3>
             <p className="text-sm">
               Votre boutique e-commerce moderne pour les meilleurs produits tech et lifestyle.
             </p>
@@ -63,7 +63,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-sm text-center">
-          <p>&copy; {new Date().getFullYear()} E-Shop. Tous droits réservés.</p>
+          <p>&copy; {new Date().getFullYear()} First Shop. Tous droits réservés.</p>
         </div>
       </div>
     </footer>

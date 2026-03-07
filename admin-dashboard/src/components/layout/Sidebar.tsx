@@ -68,8 +68,8 @@ export function Sidebar({ open, collapsed, onClose, onToggleCollapse }: SidebarP
         {/* Header */}
         <div className="h-20 flex items-center px-6 shrink-0 relative">
           <div className="flex items-center gap-3 overflow-hidden">
-            <div className="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center shadow-lg shadow-indigo-500/20 shrink-0">
-              <Store className="text-white" size={20} />
+            <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shadow-lg shadow-indigo-500/20 shrink-0 overflow-hidden p-1">
+              <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" />
             </div>
             {!collapsed && (
               <motion.div
@@ -77,7 +77,7 @@ export function Sidebar({ open, collapsed, onClose, onToggleCollapse }: SidebarP
                 animate={{ opacity: 1, x: 0 }}
                 className="flex flex-col"
               >
-                <span className="font-bold text-white text-base leading-none">AdminPro</span>
+                <span className="font-bold text-white text-base leading-none">First Shop</span>
                 <span className="text-[10px] text-indigo-400 font-bold tracking-widest uppercase mt-0.5">{t('common.administrator')}</span>
               </motion.div>
             )}
