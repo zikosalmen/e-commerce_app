@@ -90,9 +90,15 @@ export function useCreateProduct() {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (product: ProductFormData) => {
+      // Provide an ID since it violating non-null constraint
+      const payload = {
+        ...product,
+        id: `prod_${Math.random().toString(36).substring(2, 11)}_${Date.now()}`
+      };
+      
       const { data, error } = await supabase
         .from('Product')
-        .insert(product)
+        .insert(payload)
         .select()
         .single();
       if (error) throw error;

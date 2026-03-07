@@ -44,9 +44,14 @@ export function useCreateCategory() {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (category: CategoryFormData) => {
+      const payload = {
+        ...category,
+        id: `cat_${Math.random().toString(36).substring(2, 11)}_${Date.now()}`
+      };
+      
       const { data, error } = await supabase
         .from('Category')
-        .insert(category)
+        .insert(payload)
         .select()
         .single();
       if (error) throw error;
