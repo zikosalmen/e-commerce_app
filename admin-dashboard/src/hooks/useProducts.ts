@@ -93,7 +93,9 @@ export function useCreateProduct() {
       // Provide an ID since it violating non-null constraint
       const payload = {
         ...product,
-        id: `prod_${Math.random().toString(36).substring(2, 11)}_${Date.now()}`
+        id: `prod_${Math.random().toString(36).substring(2, 11)}_${Date.now()}`,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
       };
       
       const { data, error } = await supabase
@@ -118,9 +120,14 @@ export function useUpdateProduct() {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async ({ id, ...product }: ProductFormData & { id: string }) => {
+      const payload = {
+        ...product,
+        updatedAt: new Date().toISOString(),
+      };
+      
       const { data, error } = await supabase
         .from('Product')
-        .update(product)
+        .update(payload)
         .eq('id', id)
         .select()
         .single();

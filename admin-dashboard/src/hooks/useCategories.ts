@@ -46,7 +46,9 @@ export function useCreateCategory() {
     mutationFn: async (category: CategoryFormData) => {
       const payload = {
         ...category,
-        id: `cat_${Math.random().toString(36).substring(2, 11)}_${Date.now()}`
+        id: `cat_${Math.random().toString(36).substring(2, 11)}_${Date.now()}`,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
       };
       
       const { data, error } = await supabase
@@ -71,9 +73,14 @@ export function useUpdateCategory() {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async ({ id, ...category }: CategoryFormData & { id: string }) => {
+      const payload = {
+        ...category,
+        updatedAt: new Date().toISOString(),
+      };
+      
       const { data, error } = await supabase
         .from('Category')
-        .update(category)
+        .update(payload)
         .eq('id', id)
         .select()
         .single();
