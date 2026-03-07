@@ -68,7 +68,7 @@ export function Sidebar({ open, collapsed, onClose, onToggleCollapse }: SidebarP
         {/* Header */}
         <div className="h-20 flex items-center px-6 shrink-0 relative">
           <div className="flex items-center gap-3 overflow-hidden">
-            <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shadow-lg shadow-indigo-500/20 shrink-0 overflow-hidden p-1">
+            <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-lg shadow-indigo-500/20 shrink-0 overflow-hidden p-2 transition-transform hover:scale-105 border border-white/10">
               <img src="/logo.png" alt="Logo" className="w-full h-full object-contain" />
             </div>
             {!collapsed && (
