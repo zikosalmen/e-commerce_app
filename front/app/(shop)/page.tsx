@@ -7,7 +7,6 @@ import { FiArrowRight } from 'react-icons/fi';
 export const dynamic = 'force-dynamic';
 
 export default async function HomePage() {
-  // Force refresh
   // Fetch featured products
   const featuredProducts = await prisma.product.findMany({
     where: { featured: true },
@@ -23,6 +22,12 @@ export default async function HomePage() {
     include: { category: true },
   });
 
+  // Fetch categories
+  const categories = await prisma.category.findMany({
+    take: 4,
+    orderBy: { name: 'asc' },
+  });
+
   return (
     <div>
       {/* Hero Section */}
@@ -31,7 +36,7 @@ export default async function HomePage() {
         <div className="container mx-auto px-4 py-24 md:py-32 relative z-10">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">
-              Bienvenue sur votre boutique moderne
+              Bienvenue sur First Shop
             </h1>
             <p className="text-xl md:text-2xl mb-8 text-primary-100 animate-slide-up">
               Découvrez notre sélection de produits tech et lifestyle de qualité supérieure.
@@ -86,15 +91,25 @@ export default async function HomePage() {
             Découvrez nos catégories
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {['Électronique', 'Accessoires', 'Audio', 'Caméras'].map((category) => (
+            {categories.map((category) => (
               <Link
-                key={category}
-                href={`/boutique?category=${encodeURIComponent(category)}`}
-                className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-md hover:shadow-xl transition-all hover:-translate-y-1 text-center group"
+                key={category.id}
+                href={`/boutique?category=${encodeURIComponent(category.name)}`}
+                className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-md hover:shadow-xl transition-all hover:-translate-y-1 text-center group flex flex-col items-center"
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-primary-600 to-secondary-600 rounded-full mx-auto mb-4 group-hover:scale-110 transition-transform" />
-                <h3 className="font-semibold text-gray-900 dark:text-white">
-                  {category}
+                <div className="w-20 h-20 rounded-full mx-auto mb-4 group-hover:scale-110 transition-transform overflow-hidden relative border-2 border-primary-100 dark:border-primary-900/10 shadow-lg">
+                  {category.image ? (
+                    <img 
+                      src={category.image} 
+                      alt={category.name} 
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-primary-500 to-secondary-500" />
+                  )}
+                </div>
+                <h3 className="font-bold text-gray-900 dark:text-white text-lg">
+                  {category.name}
                 </h3>
               </Link>
             ))}
