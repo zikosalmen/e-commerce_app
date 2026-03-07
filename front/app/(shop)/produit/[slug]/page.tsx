@@ -6,6 +6,8 @@ import { getImageUrl, formatPrice } from '@/lib/utils';
 import { FiShoppingCart, FiCheck, FiArrowLeft } from 'react-icons/fi';
 import Link from 'next/link';
 
+import { ProductGallery } from '@/components/shop/ProductGallery';
+
 interface ProductPageProps {
   params: Promise<{
     slug: string;
@@ -43,14 +45,19 @@ export default async function ProductPage({ params }: ProductPageProps) {
     notFound();
   }
 
-  const images = product.images ? JSON.parse(product.images) : []; 
-  // Actually schema has 'imageUrl' in Product (check schema), and 'images' JSON. 
-  // Seed script uses 'images' JSON array. 
-  // categories have 'image'.
-  // Let's check schema again. Product has `imageUrl` String? and `images` String default("[]").
-  
-  // Clean up images array
-  const displayImages = images.length > 0 ? images : product.imageUrl ? [product.imageUrl] : [];
+  // Handle images parsing and default logic
+  let imagesArr: string[] = [];
+  try {
+    if (product.images) {
+      imagesArr = JSON.parse(product.images);
+    }
+  } catch (e) {
+    console.error('Error parsing product images JSON:', e);
+  }
+
+  if (imagesArr.length === 0 && product.imageUrl) {
+    imagesArr = [product.imageUrl];
+  }
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -61,36 +68,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
         {/* Gallery Section */}
-        <div className="space-y-4">
-          <div className="relative aspect-square bg-gray-100 rounded-xl overflow-hidden border border-gray-200 dark:border-gray-700">
-             {displayImages.length > 0 ? (
-                <Image
-                  src={getImageUrl(displayImages[0])}
-                  alt={product.name}
-                  fill
-                  className="object-cover"
-                />
-             ) : (
-                <div className="w-full h-full flex items-center justify-center text-gray-400">
-                  No Image
-                </div>
-             )}
-          </div>
-          {displayImages.length > 1 && (
-            <div className="grid grid-cols-4 gap-4">
-              {displayImages.map((img: string, idx: number) => (
-                <div key={idx} className="relative aspect-square bg-gray-100 rounded-lg overflow-hidden border border-gray-200 cursor-pointer hover:border-primary-500 transition-colors">
-                  <Image
-                    src={getImageUrl(img)}
-                    alt={`${product.name} ${idx + 1}`}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+        <ProductGallery productName={product.name} images={imagesArr} />
 
         {/* Product Info Section */}
         <div className="flex flex-col">
