@@ -13,16 +13,13 @@ export function Footer() {
               Votre boutique e-commerce moderne pour les meilleurs produits tech et lifestyle.
             </p>
             <div className="flex space-x-4 mt-4">
-              <a href="#" className="hover:text-primary-400 transition-colors">
+              <a href="https://www.facebook.com/profile.php?id=61578325299947" className="hover:text-primary-400 transition-colors">
                 <FiFacebook className="w-5 h-5" />
-              </a>
-              <a href="#" className="hover:text-primary-400 transition-colors">
-                <FiTwitter className="w-5 h-5" />
               </a>
               <a href="#" className="hover:text-primary-400 transition-colors">
                 <FiInstagram className="w-5 h-5" />
               </a>
-              <a href="#" className="hover:text-primary-400 transition-colors">
+              <a href="https://mail.google.com/" className="hover:text-primary-400 transition-colors">
                 <FiMail className="w-5 h-5" />
               </a>
             </div>
@@ -44,22 +41,12 @@ export function Footer() {
             <h4 className="text-white font-semibold mb-4">Support</h4>
             <ul className="space-y-2 text-sm">
               <li><Link href="/contact" className="hover:text-primary-400 transition-colors">Contact</Link></li>
-              <li><Link href="/faq" className="hover:text-primary-400 transition-colors">FAQ</Link></li>
               <li><Link href="/livraison" className="hover:text-primary-400 transition-colors">Livraison</Link></li>
               <li><Link href="/retours" className="hover:text-primary-400 transition-colors">Retours</Link></li>
             </ul>
           </div>
 
-          {/* Legal */}
-          <div>
-            <h4 className="text-white font-semibold mb-4">Légal</h4>
-            <ul className="space-y-2 text-sm">
-              <li><Link href="/cgv" className="hover:text-primary-400 transition-colors">CGV</Link></li>
-              <li><Link href="/mentions-legales" className="hover:text-primary-400 transition-colors">Mentions légales</Link></li>
-              <li><Link href="/confidentialite" className="hover:text-primary-400 transition-colors">Confidentialité</Link></li>
-              <li><Link href="/cookies" className="hover:text-primary-400 transition-colors">Cookies</Link></li>
-            </ul>
-          </div>
+         
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-sm text-center">

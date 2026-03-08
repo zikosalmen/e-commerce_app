@@ -138,27 +138,8 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="bg-gradient-to-r from-primary-600 to-secondary-600 text-white py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Inscrivez-vous à notre newsletter
-          </h2>
-          <p className="text-xl mb-8 text-primary-100">
-            Recevez nos dernières offres et nouveautés directement dans votre boîte mail
-          </p>
-          <div className="max-w-md mx-auto flex gap-4">
-            <input
-              type="email"
-              placeholder="Votre email"
-              className="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
-            />
-            <Button size="lg" className="bg-white text-primary-600 hover:bg-gray-100">
-              S'inscrire
-            </Button>
-          </div>
-        </div>
-      </section>
+      
+      
     </div>
   );
 }
