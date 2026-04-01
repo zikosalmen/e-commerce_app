@@ -2,10 +2,7 @@
   "crons": [
     {
       "path": "/api/health",
-      "schedule": "0 */12 * * *",
-      "headers": {
-        "Authorization": "Bearer @12991299"
-      }
+      "schedule": "0 */12 * * *"
     }
   ]
 }
