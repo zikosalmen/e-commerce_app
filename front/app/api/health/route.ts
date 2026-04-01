@@ -1,21 +1,19 @@
 import { createClient } from "@supabase/supabase-js";
 
 const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  process.env.SUPABASE_URL!,
+  process.env.SUPABASE_ANON_KEY!
 );
 
 export async function GET(req: Request) {
   const isCron = req.headers.get("x-vercel-cron");
   if (!isCron) return new Response("unauthorized", { status: 401 });
 
-  // check env
   if (!process.env.SUPABASE_URL || !process.env.SUPABASE_ANON_KEY) {
     return new Response("Missing env vars", { status: 500 });
   }
 
   try {
-    // read last run timestamp
     const { data: lastRunData } = await supabase
       .from("cron_meta")
       .select("last_run")
