@@ -24,7 +24,7 @@ export async function GET(req: Request) {
     const lastRun = lastRunData?.last_run ? new Date(lastRunData.last_run) : null;
 
     if (!lastRun || now.getTime() - lastRun.getTime() >= 48 * 60 * 60 * 1000) {
-      const { error } = await supabase.from("categories").select("id").limit(1);
+      const { error } = await supabase.from("Category").select("id").limit(1);
       if (error) {
         console.error("Supabase error:", error);
         return new Response(JSON.stringify({ status: "error" }), { status: 500 });
